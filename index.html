@@ -10,7 +10,7 @@
 		<title>Geo-Information Data Visualization Project</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="icon" type="image/png" href="images/logo.png" />
+		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4d00' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'/%3E%3C/svg%3E" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
@@ -205,16 +205,28 @@
 
 			/* ── Strip Stellar's black header background ── */
 			#header {
-				background: none !important;
-				background-color: transparent !important;
-				background-image: none !important;
+				background-color: #1a0800 !important;
+				background-image: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.6)), url('images/plume.jpg') !important;
+				background-size: cover !important;
+				background-position: center !important;
 			}
 			#header h1, #header p, #header p a {
 				color: #ffffff !important;
 				text-shadow: none !important;
 			}
-			#header .logo img {
-				filter: none !important;
+			/* Remove Stellar's white circle around the logo */
+			#header .logo {
+				background: none !important;
+				border: none !important;
+				box-shadow: none !important;
+				width: auto !important;
+				height: auto !important;
+				line-height: 1 !important;
+				border-radius: 0 !important;
+			}
+			#header .logo svg {
+				display: block;
+				margin: 0 auto;
 			}
 
 			/* ── CSUN footer logo ── */
@@ -227,7 +239,7 @@
 			}
 		</style>
 	</head>
-	<body class="is-preload">
+	<body>
 
 		<!-- Wrapper -->
 		<div id="wrapper">
@@ -236,7 +248,11 @@
 			     HEADER  (Req #1, #8)
 			     ════════════════════════════ -->
 			<header id="header" class="alt">
-				<span class="logo"><img src="images/logo.svg" alt="Project Logo" /></span>
+				<span class="logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ff4d00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="80" height="80" style="filter: drop-shadow(0 0 12px rgba(255,77,0,0.6));">
+						<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+					</svg>
+				</span>
 				<h1>Geo-Information Data Visualization Project</h1>
 				<p>A wildfire prediction and risk visualization platform built at<br />
 				<a href="https://www.csun.edu/">California State University, Northridge</a> &mdash; combining
