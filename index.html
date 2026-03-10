@@ -17,46 +17,6 @@
 
 		<style>
 
-			/* ── CSUN top bar ── */
-			#csun-topbar {
-				background: #CC0000;
-				color: #fff;
-				padding: 0.5rem 2rem;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				flex-wrap: wrap;
-				gap: 0.5rem;
-				font-size: 0.8rem;
-				position: relative;
-				z-index: 9999;
-			}
-			#csun-topbar .topbar-left {
-				display: flex;
-				align-items: center;
-				gap: 1rem;
-			}
-			#csun-topbar .csun-logo-img {
-				height: 32px;
-				filter: brightness(0) invert(1);
-			}
-			#csun-topbar a {
-				color: rgba(255,255,255,0.85);
-				text-decoration: none;
-				transition: color 0.2s;
-			}
-			#csun-topbar a:hover { color: #fff; text-decoration: underline; }
-			#csun-topbar .topbar-links {
-				display: flex;
-				gap: 1.2rem;
-				flex-wrap: wrap;
-			}
-			#csun-topbar .topbar-social {
-				display: flex;
-				gap: 0.9rem;
-			}
-			#csun-topbar .topbar-social a { font-size: 1rem; }
-
 			/* ── Team cards grid ── */
 			.team-grid {
 				display: grid;
@@ -241,15 +201,20 @@
 			}
 			.video-placeholder i { font-size: 3rem; color: rgba(255,255,255,0.2); }
 
-			/* ── Hero background override ── */
-			/* Replace images/wildfire-bg.jpg with a real wildfire photo (free: unsplash.com/s/photos/wildfire) */
+
+
+			/* ── Strip Stellar's black header background ── */
 			#header {
-				background-color: #1a0800 !important;
-				background-image:
-					linear-gradient(to bottom, rgba(15,4,0,0.72) 0%, rgba(8,2,0,0.88) 100%),
-					url('images/wildfire-bg.jpg') !important;
-				background-size: cover !important;
-				background-position: center !important;
+				background: none !important;
+				background-color: transparent !important;
+				background-image: none !important;
+			}
+			#header h1, #header p, #header p a {
+				color: #ffffff !important;
+				text-shadow: none !important;
+			}
+			#header .logo img {
+				filter: none !important;
 			}
 
 			/* ── CSUN footer logo ── */
@@ -264,42 +229,6 @@
 	</head>
 	<body class="is-preload">
 
-		<!-- ════════════════════════════════════════════
-		     CSUN TOP BAR  (Req #9 — on every page)
-		     ════════════════════════════════════════════ -->
-		<div id="csun-topbar">
-			<div class="topbar-left">
-				<!--
-					Save the CSUN logo to images/csun-logo.png
-					Download from: https://www.csun.edu/sites/default/files/CSUN_signature_red_trans.png
-					then save as images/csun-logo.png
-				-->
-				<img class="csun-logo-img"
-				     src="images/csun-logo.png"
-				     alt="CSUN Logo"
-				     onerror="this.style.display='none'" />
-				<div class="topbar-links">
-					<a href="https://www.csun.edu/">CSUN Home</a>
-					<a href="https://www.csun.edu/engineering-computer-science/computer-science">CS Department</a>
-					<a href="https://www.csun.edu/~xjiang/SeniorDesign/">&#8592; Senior Design Course</a>
-				</div>
-			</div>
-			<div class="topbar-social">
-				<a href="https://www.facebook.com/calstatenorthridge" title="CSUN Facebook" target="_blank">
-					<i class="fab fa-facebook-f"></i>
-				</a>
-				<a href="https://x.com/csunorthridge" title="CSUN Twitter" target="_blank">
-					<i class="fab fa-twitter"></i>
-				</a>
-				<a href="https://www.linkedin.com/school/california-state-university-northridge/" title="CSUN LinkedIn" target="_blank">
-					<i class="fab fa-linkedin-in"></i>
-				</a>
-				<a href="https://www.instagram.com/csunorthridge/" title="CSUN Instagram" target="_blank">
-					<i class="fab fa-instagram"></i>
-				</a>
-			</div>
-		</div>
-
 		<!-- Wrapper -->
 		<div id="wrapper">
 
@@ -307,14 +236,11 @@
 			     HEADER  (Req #1, #8)
 			     ════════════════════════════ -->
 			<header id="header" class="alt">
-				<span class="logo"><img src="images/logo.png" alt="Project Logo" /></span>
+				<span class="logo"><img src="images/logo.svg" alt="Project Logo" /></span>
 				<h1>Geo-Information Data Visualization Project</h1>
-				<p>
-					A wildfire prediction and risk visualization platform built at
-					<strong>California State University, Northridge</strong> &mdash; combining
-					geospatial data, machine learning, and interactive mapping to help
-					Californians understand and respond to wildfire risk.
-				</p>
+				<p>A wildfire prediction and risk visualization platform built at<br />
+				<a href="https://www.csun.edu/">California State University, Northridge</a> &mdash; combining
+				geospatial data, machine learning, and interactive mapping.</p>
 			</header>
 
 			<!-- Nav -->
@@ -339,6 +265,11 @@
 					<div class="spotlight">
 						<div class="content">
 							<header class="major">
+								<a href="https://www.csun.edu/" target="_blank">
+									<img src="https://upload.wikimedia.org/wikipedia/en/8/8c/CSUNS.svg"
+									     alt="California State University Northridge"
+									     style="height:64px; margin-bottom:0.8rem; display:block;" />
+								</a>
 								<h2>Project Overview</h2>
 							</header>
 							<p>
@@ -368,7 +299,7 @@
 							<!-- Replace with a real project screenshot -->
 							<img src="images/screenshot-map.png"
 							     alt="Wildfire risk map visualization"
-							     onerror="this.src='images/pic01.jpg'" />
+							     onerror="this.src='https://upload.wikimedia.org/wikipedia/en/8/8c/CSUNS.svg'" />
 						</span>
 					</div>
 				</section>
@@ -744,9 +675,8 @@
 				<section>
 					<h2>
 						<img class="csun-footer-logo"
-						     src="images/csun-logo.png"
-						     alt="CSUN"
-						     onerror="this.style.display='none'" />
+						     src="https://upload.wikimedia.org/wikipedia/en/8/8c/CSUNS.svg"
+						     alt="CSUN" />
 						CSUN Links
 					</h2>
 					<dl class="alt">
