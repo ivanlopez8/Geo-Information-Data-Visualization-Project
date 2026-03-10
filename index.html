@@ -3,182 +3,827 @@
 	Stellar by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Modified for CSUN Senior Design Project - Geo-Information Data Visualization
 -->
 <html>
 	<head>
-		<title>Stellar by HTML5 UP</title>
+		<title>Geo-Information Data Visualization Project</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="images/logo.png" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<style>
+
+			/* ── CSUN top bar ── */
+			#csun-topbar {
+				background: #CC0000;
+				color: #fff;
+				padding: 0.5rem 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				font-size: 0.8rem;
+				position: relative;
+				z-index: 9999;
+			}
+			#csun-topbar .topbar-left {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+			#csun-topbar .csun-logo-img {
+				height: 32px;
+				filter: brightness(0) invert(1);
+			}
+			#csun-topbar a {
+				color: rgba(255,255,255,0.85);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			#csun-topbar a:hover { color: #fff; text-decoration: underline; }
+			#csun-topbar .topbar-links {
+				display: flex;
+				gap: 1.2rem;
+				flex-wrap: wrap;
+			}
+			#csun-topbar .topbar-social {
+				display: flex;
+				gap: 0.9rem;
+			}
+			#csun-topbar .topbar-social a { font-size: 1rem; }
+
+			/* ── Team cards grid ── */
+			.team-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+				gap: 1.5rem;
+				margin: 2rem 0;
+				text-align: center;
+			}
+			.team-card {
+				background: rgba(255,255,255,0.05);
+				border: 1px solid rgba(255,255,255,0.1);
+				border-radius: 10px;
+				padding: 1.5rem 1rem;
+				transition: transform 0.2s, border-color 0.2s;
+			}
+			.team-card:hover {
+				transform: translateY(-4px);
+				border-color: rgba(255,255,255,0.3);
+			}
+			.team-photo {
+				width: 90px;
+				height: 90px;
+				border-radius: 50%;
+				object-fit: cover;
+				margin: 0 auto 0.8rem;
+				display: block;
+				border: 3px solid rgba(255,255,255,0.2);
+			}
+			.team-avatar-placeholder {
+				width: 90px;
+				height: 90px;
+				border-radius: 50%;
+				margin: 0 auto 0.8rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.8rem;
+				font-weight: 700;
+				color: #fff;
+				border: 3px solid rgba(255,255,255,0.2);
+			}
+			.av-red    { background: linear-gradient(135deg,#c0392b,#922b21); }
+			.av-blue   { background: linear-gradient(135deg,#1a5276,#2e86c1); }
+			.av-green  { background: linear-gradient(135deg,#1e8449,#27ae60); }
+			.av-orange { background: linear-gradient(135deg,#d35400,#e67e22); }
+			.av-purple { background: linear-gradient(135deg,#6c3483,#9b59b6); }
+
+			.team-card h4 { margin: 0 0 0.3rem; font-size: 0.95rem; }
+			.team-card .role {
+				font-size: 0.75rem;
+				opacity: 0.65;
+				margin-bottom: 0.8rem;
+				line-height: 1.4;
+			}
+			.team-card .member-links {
+				display: flex;
+				justify-content: center;
+				gap: 0.7rem;
+			}
+			.team-card .member-links a {
+				color: rgba(255,255,255,0.6);
+				font-size: 1rem;
+				transition: color 0.2s;
+			}
+			.team-card .member-links a:hover { color: #fff; }
+
+			/* ── Tech links grid ── */
+			.tech-links-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+				gap: 0.8rem;
+				margin: 1.5rem 0;
+				text-align: left;
+			}
+			.tech-links-grid a {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				background: rgba(255,255,255,0.05);
+				border: 1px solid rgba(255,255,255,0.1);
+				border-radius: 6px;
+				padding: 0.6rem 0.9rem;
+				color: inherit;
+				text-decoration: none;
+				font-size: 0.85rem;
+				transition: background 0.2s, border-color 0.2s;
+			}
+			.tech-links-grid a:hover {
+				background: rgba(255,255,255,0.1);
+				border-color: rgba(255,255,255,0.3);
+			}
+			.tech-links-grid a i { width: 16px; text-align: center; opacity: 0.8; }
+
+			/* ── Skills tags ── */
+			.skills-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.6rem;
+				justify-content: center;
+				margin: 1.5rem 0;
+			}
+			.skills-tags .tag {
+				background: rgba(255,255,255,0.08);
+				border: 1px solid rgba(255,255,255,0.15);
+				border-radius: 20px;
+				padding: 0.35rem 0.9rem;
+				font-size: 0.8rem;
+				color: rgba(255,255,255,0.85);
+			}
+
+			/* ── Screenshots grid ── */
+			.screenshots-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+				gap: 1.2rem;
+				margin: 1.5rem 0;
+			}
+			.screenshot-item {
+				border-radius: 8px;
+				overflow: hidden;
+				border: 1px solid rgba(255,255,255,0.1);
+			}
+			.screenshot-item img {
+				width: 100%;
+				height: 175px;
+				object-fit: cover;
+				display: block;
+			}
+			.screenshot-placeholder {
+				width: 100%;
+				height: 175px;
+				background: rgba(255,255,255,0.04);
+				border: 2px dashed rgba(255,255,255,0.15);
+				border-radius: 8px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: rgba(255,255,255,0.3);
+				font-size: 0.75rem;
+				gap: 0.4rem;
+			}
+			.screenshot-placeholder i { font-size: 2rem; }
+			.screenshot-caption {
+				padding: 0.5rem 0.7rem;
+				font-size: 0.78rem;
+				opacity: 0.6;
+				background: rgba(255,255,255,0.03);
+			}
+
+			/* ── Video embed ── */
+			.video-container {
+				position: relative;
+				width: 100%;
+				max-width: 800px;
+				margin: 1.5rem auto;
+				border-radius: 10px;
+				overflow: hidden;
+				border: 1px solid rgba(255,255,255,0.1);
+			}
+			.video-container iframe {
+				display: block;
+				width: 100%;
+				aspect-ratio: 16/9;
+				border: none;
+			}
+			.video-placeholder {
+				width: 100%;
+				aspect-ratio: 16/9;
+				background: rgba(255,255,255,0.04);
+				border: 2px dashed rgba(255,255,255,0.15);
+				border-radius: 10px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: rgba(255,255,255,0.35);
+				gap: 0.6rem;
+				font-size: 0.82rem;
+				max-width: 800px;
+				margin: 1.5rem auto;
+			}
+			.video-placeholder i { font-size: 3rem; color: rgba(255,255,255,0.2); }
+
+			/* ── Hero background override ── */
+			/* Replace images/wildfire-bg.jpg with a real wildfire photo (free: unsplash.com/s/photos/wildfire) */
+			#header {
+				background-color: #1a0800 !important;
+				background-image:
+					linear-gradient(to bottom, rgba(15,4,0,0.72) 0%, rgba(8,2,0,0.88) 100%),
+					url('images/wildfire-bg.jpg') !important;
+				background-size: cover !important;
+				background-position: center !important;
+			}
+
+			/* ── CSUN footer logo ── */
+			.csun-footer-logo {
+				height: 24px;
+				vertical-align: middle;
+				margin-right: 0.4rem;
+				filter: brightness(0) invert(1);
+				opacity: 0.7;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+		<!-- ════════════════════════════════════════════
+		     CSUN TOP BAR  (Req #9 — on every page)
+		     ════════════════════════════════════════════ -->
+		<div id="csun-topbar">
+			<div class="topbar-left">
+				<!--
+					Save the CSUN logo to images/csun-logo.png
+					Download from: https://www.csun.edu/sites/default/files/CSUN_signature_red_trans.png
+					then save as images/csun-logo.png
+				-->
+				<img class="csun-logo-img"
+				     src="images/csun-logo.png"
+				     alt="CSUN Logo"
+				     onerror="this.style.display='none'" />
+				<div class="topbar-links">
+					<a href="https://www.csun.edu/">CSUN Home</a>
+					<a href="https://www.csun.edu/engineering-computer-science/computer-science">CS Department</a>
+					<a href="https://www.csun.edu/~xjiang/SeniorDesign/">&#8592; Senior Design Course</a>
+				</div>
+			</div>
+			<div class="topbar-social">
+				<a href="https://www.facebook.com/calstatenorthridge" title="CSUN Facebook" target="_blank">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+				<a href="https://x.com/csunorthridge" title="CSUN Twitter" target="_blank">
+					<i class="fab fa-twitter"></i>
+				</a>
+				<a href="https://www.linkedin.com/school/california-state-university-northridge/" title="CSUN LinkedIn" target="_blank">
+					<i class="fab fa-linkedin-in"></i>
+				</a>
+				<a href="https://www.instagram.com/csunorthridge/" title="CSUN Instagram" target="_blank">
+					<i class="fab fa-instagram"></i>
+				</a>
+			</div>
+		</div>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>Stellar</h1>
-						<p>Just another free, fully responsive site template<br />
-						built by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- ════════════════════════════
+			     HEADER  (Req #1, #8)
+			     ════════════════════════════ -->
+			<header id="header" class="alt">
+				<span class="logo"><img src="images/logo.png" alt="Project Logo" /></span>
+				<h1>Geo-Information Data Visualization Project</h1>
+				<p>
+					A wildfire prediction and risk visualization platform built at
+					<strong>California State University, Northridge</strong> &mdash; combining
+					geospatial data, machine learning, and interactive mapping to help
+					Californians understand and respond to wildfire risk.
+				</p>
+			</header>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#intro"              class="active">Introduction</a></li>
+					<li><a href="#first">Features</a></li>
+					<li><a href="#second">Technology</a></li>
+					<li><a href="#screenshots-section">Screenshots</a></li>
+					<li><a href="#demo-section">Demo Video</a></li>
+					<li><a href="#cta">Team</a></li>
+				</ul>
+			</nav>
+
+			<!-- Main -->
+			<div id="main">
+
+				<!-- ════════════════════════════
+				     INTRODUCTION  (Req #3)
+				     ════════════════════════════ -->
+				<section id="intro" class="main">
+					<div class="spotlight">
+						<div class="content">
+							<header class="major">
+								<h2>Project Overview</h2>
+							</header>
+							<p>
+								The Geo-Information Data Visualization Project is a full-stack wildfire risk
+								platform developed as a CSUN Computer Science Senior Design capstone. The system
+								ingests geospatial data &mdash; including weather, vegetation, elevation, and
+								historical fire records &mdash; and feeds it into a trained machine learning model
+								to generate real-time risk predictions displayed on an interactive map.
+							</p>
+							<p>
+								The platform supports residents, researchers, and emergency planners who need to
+								understand where wildfire risk is highest across California. It provides a
+								React-based frontend with GIS layer controls and date filters, a Flask backend
+								with a live prediction API, user-defined threshold alerts, and an admin panel
+								for managing data refresh schedules.
+							</p>
+							<ul class="actions">
+								<li>
+									<a href="https://github.com/IvanLopez-Source/geo-info-data-visualization-project"
+									   class="button" target="_blank">
+										View on GitHub
+									</a>
+								</li>
+							</ul>
+						</div>
+						<span class="image">
+							<!-- Replace with a real project screenshot -->
+							<img src="images/screenshot-map.png"
+							     alt="Wildfire risk map visualization"
+							     onerror="this.src='images/pic01.jpg'" />
+						</span>
+					</div>
+				</section>
+
+				<!-- ════════════════════════════
+				     FEATURES  (Req #3)
+				     ════════════════════════════ -->
+				<section id="first" class="main special">
+					<header class="major">
+						<h2>Major Features</h2>
+					</header>
+					<ul class="features">
+						<li>
+							<span class="icon solid major style1 fa-map-marked-alt"></span>
+							<h3>Interactive Geospatial Maps</h3>
+							<p>
+								Dynamic GIS layers with date filters let users explore wildfire risk zones,
+								affected regions, and location-based environmental patterns across California
+								in real time.
+							</p>
+						</li>
+						<li>
+							<span class="icon major style3 fa-brain"></span>
+							<h3>ML Risk Prediction</h3>
+							<p>
+								A trained scikit-learn model provides single and batch wildfire risk predictions
+								via REST API, powered by ingested weather, vegetation, elevation, and fire-history
+								data.
+							</p>
+						</li>
+						<li>
+							<span class="icon major style5 fa-bell"></span>
+							<h3>Alerts &amp; Notifications</h3>
+							<p>
+								Users define custom risk thresholds and receive alerts when fire risk conditions
+								meet their configured levels, keeping residents and planners proactively informed.
+							</p>
+						</li>
+						<li>
+							<span class="icon solid major style2 fa-database"></span>
+							<h3>Data Ingestion Pipeline</h3>
+							<p>
+								An automated ETL pipeline ingests and preprocesses geospatial data from weather
+								feeds, vegetation indices, elevation models, and historical fire records on a
+								configurable schedule.
+							</p>
+						</li>
+						<li>
+							<span class="icon solid major style4 fa-chart-bar"></span>
+							<h3>Data Visualization &amp; Analytics</h3>
+							<p>
+								Visual overlays, risk dashboards, and analytical displays make complex
+								environmental data accessible to both technical researchers and general users.
+							</p>
+						</li>
+						<li>
+							<span class="icon solid major style1 fa-cogs"></span>
+							<h3>Admin Workflows</h3>
+							<p>
+								Administrators configure data refresh schedules, manage user roles, and control
+								system settings through a dedicated admin panel backed by secure API routes.
+							</p>
+						</li>
+					</ul>
+				</section>
+
+				<!-- ════════════════════════════
+				     TECHNOLOGIES + SKILLS  (Req #4, #5)
+				     ════════════════════════════ -->
+				<section id="second" class="main special">
+					<header class="major">
+						<h2>Technologies &amp; Skills</h2>
+						<p>
+							A modern full-stack + ML stack spanning frontend, backend, geospatial
+							visualization, data engineering, and DevOps.
+						</p>
 					</header>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#intro" class="active">Introduction</a></li>
-							<li><a href="#first">First Section</a></li>
-							<li><a href="#second">Second Section</a></li>
-							<li><a href="#cta">Get Started</a></li>
-						</ul>
-					</nav>
+					<ul class="statistics">
+						<li class="style1">
+							<span class="icon solid fa-laptop-code"></span>
+							<strong>Frontend</strong> React &middot; TypeScript
+						</li>
+						<li class="style2">
+							<span class="icon solid fa-server"></span>
+							<strong>Backend</strong> Flask &middot; Python
+						</li>
+						<li class="style3">
+							<span class="icon solid fa-map"></span>
+							<strong>GIS</strong> Leaflet &middot; deck.gl
+						</li>
+						<li class="style4">
+							<span class="icon solid fa-brain"></span>
+							<strong>ML</strong> scikit-learn
+						</li>
+						<li class="style5">
+							<span class="icon solid fa-database"></span>
+							<strong>Database</strong> PostgreSQL
+						</li>
+					</ul>
 
-				<!-- Main -->
-					<div id="main">
+					<!-- Req #4: Technologies with hyperlinks -->
+					<h3 style="margin-bottom:0.8rem;">Technologies Used</h3>
+					<div class="tech-links-grid">
+						<a href="https://react.dev" target="_blank">
+							<i class="fab fa-react"></i> React
+						</a>
+						<a href="https://www.typescriptlang.org" target="_blank">
+							<i class="fas fa-code"></i> TypeScript
+						</a>
+						<a href="https://leafletjs.com" target="_blank">
+							<i class="fas fa-map-marked-alt"></i> Leaflet.js
+						</a>
+						<a href="https://deck.gl" target="_blank">
+							<i class="fas fa-layer-group"></i> deck.gl
+						</a>
+						<a href="https://flask.palletsprojects.com" target="_blank">
+							<i class="fab fa-python"></i> Flask
+						</a>
+						<a href="https://www.python.org" target="_blank">
+							<i class="fab fa-python"></i> Python
+						</a>
+						<a href="https://scikit-learn.org" target="_blank">
+							<i class="fas fa-robot"></i> scikit-learn
+						</a>
+						<a href="https://www.postgresql.org" target="_blank">
+							<i class="fas fa-database"></i> PostgreSQL
+						</a>
+						<a href="https://www.docker.com" target="_blank">
+							<i class="fab fa-docker"></i> Docker
+						</a>
+						<a href="https://alembic.sqlalchemy.org" target="_blank">
+							<i class="fas fa-code-branch"></i> Alembic
+						</a>
+						<a href="https://docs.pytest.org" target="_blank">
+							<i class="fas fa-vial"></i> pytest
+						</a>
+						<a href="https://firms.modaps.eosdis.nasa.gov" target="_blank">
+							<i class="fas fa-satellite"></i> NASA FIRMS API
+						</a>
+						<a href="https://git-scm.com" target="_blank">
+							<i class="fab fa-git-alt"></i> Git / GitHub
+						</a>
+						<a href="https://maplibre.org" target="_blank">
+							<i class="fas fa-globe"></i> MapLibre GL
+						</a>
+					</div>
 
-						<!-- Introduction -->
-							<section id="intro" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>Ipsum sed adipiscing</h2>
-										</header>
-										<p>Sed lorem ipsum dolor sit amet nullam consequat feugiat consequat magna
-										adipiscing magna etiam amet veroeros. Lorem ipsum dolor tempus sit cursus.
-										Tempus nisl et nullam lorem ipsum dolor sit amet aliquam.</p>
-										<ul class="actions">
-											<li><a href="generic.html" class="button">Learn More</a></li>
-										</ul>
-									</div>
-									<span class="image"><img src="images/pic01.jpg" alt="" /></span>
-								</div>
-							</section>
+					<!-- Req #5: Skills -->
+					<h3 style="margin: 2rem 0 0.8rem;">Skills Applied</h3>
+					<div class="skills-tags">
+						<span class="tag">Full-Stack Development</span>
+						<span class="tag">Machine Learning</span>
+						<span class="tag">Geospatial Data Engineering</span>
+						<span class="tag">REST API Design</span>
+						<span class="tag">GIS &amp; Map Visualization</span>
+						<span class="tag">Data Ingestion &amp; ETL</span>
+						<span class="tag">Database Design</span>
+						<span class="tag">ML Model Training &amp; Inference</span>
+						<span class="tag">React + TypeScript</span>
+						<span class="tag">Python &amp; Flask</span>
+						<span class="tag">Docker &amp; Containerization</span>
+						<span class="tag">Software Requirements Engineering</span>
+						<span class="tag">Agile Collaboration</span>
+						<span class="tag">Unit &amp; Integration Testing</span>
+						<span class="tag">Authentication &amp; Authorization</span>
+						<span class="tag">Real-Time Notifications</span>
+						<span class="tag">Risk Modeling</span>
+						<span class="tag">Debugging &amp; Code Review</span>
+					</div>
+				</section>
 
-						<!-- First Section -->
-							<section id="first" class="main special">
-								<header class="major">
-									<h2>Magna veroeros</h2>
-								</header>
-								<ul class="features">
-									<li>
-										<span class="icon solid major style1 fa-code"></span>
-										<h3>Ipsum consequat</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
-									</li>
-									<li>
-										<span class="icon major style3 fa-copy"></span>
-										<h3>Amed sed feugiat</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
-									</li>
-									<li>
-										<span class="icon major style5 fa-gem"></span>
-										<h3>Dolor nullam</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
-									</li>
-								</ul>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="generic.html" class="button">Learn More</a></li>
-									</ul>
-								</footer>
-							</section>
+				<!-- ════════════════════════════
+				     SCREENSHOTS  (Req #6)
+				     ════════════════════════════ -->
+				<section id="screenshots-section" class="main special">
+					<header class="major">
+						<h2>Project Screenshots</h2>
+						<p>
+							Visual walkthrough of the platform's key interfaces.<br />
+							<small style="opacity:0.5;">
+								To add real screenshots: save images to images/ and update the src attributes below.
+							</small>
+						</p>
+					</header>
+					<div class="screenshots-grid">
 
-						<!-- Second Section -->
-							<section id="second" class="main special">
-								<header class="major">
-									<h2>Ipsum consequat</h2>
-									<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-									posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
-								</header>
-								<ul class="statistics">
-									<li class="style1">
-										<span class="icon solid fa-code-branch"></span>
-										<strong>5,120</strong> Etiam
-									</li>
-									<li class="style2">
-										<span class="icon fa-folder-open"></span>
-										<strong>8,192</strong> Magna
-									</li>
-									<li class="style3">
-										<span class="icon solid fa-signal"></span>
-										<strong>2,048</strong> Tempus
-									</li>
-									<li class="style4">
-										<span class="icon solid fa-laptop"></span>
-										<strong>4,096</strong> Aliquam
-									</li>
-									<li class="style5">
-										<span class="icon fa-gem"></span>
-										<strong>1,024</strong> Nullam
-									</li>
-								</ul>
-								<p class="content">Nam elementum nisl et mi a commodo porttitor. Morbi sit amet nisl eu arcu faucibus hendrerit vel a risus. Nam a orci mi, elementum ac arcu sit amet, fermentum pellentesque et purus. Integer maximus varius lorem, sed convallis diam accumsan sed. Etiam porttitor placerat sapien, sed eleifend a enim pulvinar faucibus semper quis ut arcu. Ut non nisl a mollis est efficitur vestibulum. Integer eget purus nec nulla mattis et accumsan ut magna libero. Morbi auctor iaculis porttitor. Sed ut magna ac risus et hendrerit scelerisque. Praesent eleifend lacus in lectus aliquam porta. Cras eu ornare dui curabitur lacinia.</p>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="generic.html" class="button">Learn More</a></li>
-									</ul>
-								</footer>
-							</section>
+						<!-- Screenshot 1 — save as images/screenshot-map.png -->
+						<div class="screenshot-item">
+							<img src="images/screenshot-map.png"
+							     alt="Risk Map Visualization"
+							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-map\'></i>Risk Map Visualization<br><small>Save as images/screenshot-map.png</small></div>'" />
+							<div class="screenshot-caption">Risk Map Visualization</div>
+						</div>
 
-						<!-- Get Started -->
-							<section id="cta" class="main special">
-								<header class="major">
-									<h2>Congue imperdiet</h2>
-									<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-									posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
-								</header>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="generic.html" class="button primary">Get Started</a></li>
-										<li><a href="generic.html" class="button">Learn More</a></li>
-									</ul>
-								</footer>
-							</section>
+						<!-- Screenshot 2 — save as images/screenshot-prediction.png -->
+						<div class="screenshot-item">
+							<img src="images/screenshot-prediction.png"
+							     alt="ML Prediction Dashboard"
+							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-chart-bar\'></i>ML Prediction Dashboard<br><small>Save as images/screenshot-prediction.png</small></div>'" />
+							<div class="screenshot-caption">ML Prediction Dashboard</div>
+						</div>
+
+						<!-- Screenshot 3 — save as images/screenshot-alerts.png -->
+						<div class="screenshot-item">
+							<img src="images/screenshot-alerts.png"
+							     alt="Alerts Panel"
+							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-bell\'></i>Alerts &amp; Notifications<br><small>Save as images/screenshot-alerts.png</small></div>'" />
+							<div class="screenshot-caption">Alerts &amp; Notifications</div>
+						</div>
+
+						<!-- Screenshot 4 — save as images/screenshot-admin.png -->
+						<div class="screenshot-item">
+							<img src="images/screenshot-admin.png"
+							     alt="Admin Panel"
+							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-cogs\'></i>Admin Panel<br><small>Save as images/screenshot-admin.png</small></div>'" />
+							<div class="screenshot-caption">Admin Workflow</div>
+						</div>
+
+					</div>
+				</section>
+
+				<!-- ════════════════════════════
+				     DEMO VIDEO  (Req #7)
+				     ════════════════════════════ -->
+				<section id="demo-section" class="main special">
+					<header class="major">
+						<h2>Project Demo Video</h2>
+						<p>A 3&ndash;5 minute walkthrough of the platform's core features.</p>
+					</header>
+
+					<!--
+					HOW TO ADD YOUR YOUTUBE VIDEO:
+					1. Upload your demo to YouTube
+					2. Copy the video ID from the URL
+					   Example: https://www.youtube.com/watch?v=ABC123XYZ  →  ID is ABC123XYZ
+					3. Delete the .video-placeholder div below
+					4. Uncomment the .video-container block and paste your ID where shown
+					-->
+
+					<!--
+					<div class="video-container">
+						<iframe
+							src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+							title="Geo-Information Data Visualization Project Demo"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen>
+						</iframe>
+					</div>
+					-->
+
+					<div class="video-placeholder">
+						<i class="fab fa-youtube"></i>
+						<strong>Embed your YouTube demo video here</strong>
+						<small>See the HTML comment above for step-by-step instructions</small>
+					</div>
+				</section>
+
+				<!-- ════════════════════════════
+				     TEAM  (Req #2)
+				     ════════════════════════════ -->
+				<section id="cta" class="main special">
+					<header class="major">
+						<h2>Project Team</h2>
+						<p>
+							Five CS students from CSUN combining full-stack development, machine learning,
+							geospatial engineering, and data management.
+						</p>
+					</header>
+
+					<!--
+					HOW TO ADD TEAM PHOTOS:
+					- Save each photo to images/, e.g. images/ivan-lopez.jpg
+					- Replace the .team-avatar-placeholder div with:
+					  <img class="team-photo" src="images/ivan-lopez.jpg" alt="Ivan Lopez" />
+					- Replace the # hrefs with real GitHub and LinkedIn URLs
+					-->
+					<div class="team-grid">
+
+						<div class="team-card">
+							<div class="team-avatar-placeholder av-red">IL</div>
+							<h4>Ivan Lopez</h4>
+							<div class="role">Frontend Development &amp; Data Visualization</div>
+							<div class="member-links">
+								<a href="https://github.com/IvanLopez-Source" title="GitHub" target="_blank">
+									<i class="fab fa-github"></i>
+								</a>
+								<a href="#" title="LinkedIn — add your URL" target="_blank">
+									<i class="fab fa-linkedin"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="team-card">
+							<div class="team-avatar-placeholder av-blue">IC</div>
+							<h4>Ido Cohen</h4>
+							<div class="role">Database Design &amp; Data Management</div>
+							<div class="member-links">
+								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+							</div>
+						</div>
+
+						<div class="team-card">
+							<div class="team-avatar-placeholder av-green">SJ</div>
+							<h4>Sannia Jean</h4>
+							<div class="role">Machine Learning &amp; Data Analysis</div>
+							<div class="member-links">
+								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+							</div>
+						</div>
+
+						<div class="team-card">
+							<div class="team-avatar-placeholder av-orange">AH</div>
+							<h4>Alex Hernandez-Abrego</h4>
+							<div class="role">Authentication &amp; UI Support</div>
+							<div class="member-links">
+								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+							</div>
+						</div>
+
+						<div class="team-card">
+							<div class="team-avatar-placeholder av-purple">TS</div>
+							<h4>Tony Song</h4>
+							<div class="role">Backend Development &amp; Integration</div>
+							<div class="member-links">
+								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+							</div>
+						</div>
 
 					</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<h2>Aliquam sed mauris</h2>
-							<p>Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae tincidunt odio.</p>
-							<ul class="actions">
-								<li><a href="generic.html" class="button">Learn More</a></li>
-							</ul>
-						</section>
-						<section>
-							<h2>Etiam feugiat</h2>
-							<dl class="alt">
-								<dt>Address</dt>
-								<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-								<dt>Phone</dt>
-								<dd>(000) 000-0000 x 0000</dd>
-								<dt>Email</dt>
-								<dd><a href="#">information@untitled.tld</a></dd>
-							</dl>
-							<ul class="icons">
-								<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
-							</ul>
-						</section>
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					<footer class="major">
+						<ul class="actions special">
+							<li>
+								<a href="https://www.csun.edu/~xjiang/SeniorDesign/"
+								   class="button primary">&#8592; Back to Course Page</a>
+							</li>
+							<li>
+								<a href="https://github.com/IvanLopez-Source/geo-info-data-visualization-project"
+								   class="button" target="_blank">GitHub Repository</a>
+							</li>
+						</ul>
 					</footer>
+				</section>
 
-			</div>
+			</div><!-- end #main -->
+
+			<!-- ════════════════════════════════════════════
+			     FOOTER  (Req #9 — CSUN logo, links, social, copyright)
+			     ════════════════════════════════════════════ -->
+			<footer id="footer">
+				<section>
+					<h2>About This Project</h2>
+					<p>
+						A CSUN Computer Science Senior Design capstone demonstrating how geospatial
+						technologies, machine learning, and software engineering can be applied to
+						wildfire risk analysis and visualization for California residents and researchers.
+					</p>
+					<ul class="actions">
+						<!-- Req #10 -->
+						<li>
+							<a href="https://www.csun.edu/~xjiang/SeniorDesign/" class="button">
+								&#8592; Back to Course Page
+							</a>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>
+						<img class="csun-footer-logo"
+						     src="images/csun-logo.png"
+						     alt="CSUN"
+						     onerror="this.style.display='none'" />
+						CSUN Links
+					</h2>
+					<dl class="alt">
+						<dt>University</dt>
+						<dd>
+							<a href="https://www.csun.edu/">
+								California State University, Northridge
+							</a>
+						</dd>
+						<dt>CS Department</dt>
+						<dd>
+							<a href="https://www.csun.edu/engineering-computer-science/computer-science">
+								CSUN Computer Science
+							</a>
+						</dd>
+						<dt>Course</dt>
+						<dd>
+							<a href="https://www.csun.edu/~xjiang/SeniorDesign/">
+								CS Senior Design Projects
+							</a>
+						</dd>
+					</dl>
+					<ul class="icons">
+						<li>
+							<a href="https://x.com/csunorthridge"
+							   class="icon brands fa-twitter alt"
+							   title="CSUN Twitter" target="_blank">
+								<span class="label">Twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/calstatenorthridge"
+							   class="icon brands fa-facebook-f alt"
+							   title="CSUN Facebook" target="_blank">
+								<span class="label">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.instagram.com/csunorthridge/"
+							   class="icon brands fa-instagram alt"
+							   title="CSUN Instagram" target="_blank">
+								<span class="label">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/school/california-state-university-northridge/"
+							   class="icon brands fa-linkedin-in alt"
+							   title="CSUN LinkedIn" target="_blank">
+								<span class="label">LinkedIn</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/IvanLopez-Source/geo-info-data-visualization-project"
+							   class="icon brands fa-github alt"
+							   title="Project GitHub" target="_blank">
+								<span class="label">GitHub</span>
+							</a>
+						</li>
+					</ul>
+				</section>
+
+				<p class="copyright">
+					&copy; California State University, Northridge. All rights reserved.
+					Design template by <a href="https://html5up.net">HTML5 UP</a>.
+				</p>
+			</footer>
+
+		</div><!-- end #wrapper -->
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
