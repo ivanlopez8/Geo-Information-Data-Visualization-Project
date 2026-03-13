@@ -17,6 +17,45 @@
 
 		<style>
 
+			/* ── CSUN top bar ── */
+			#csun-topbar {
+				background: #CC0000;
+				color: #fff;
+				padding: 0.5rem 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				font-size: 0.8rem;
+				position: relative;
+				z-index: 9999;
+			}
+			#csun-topbar .topbar-left {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+			#csun-topbar .csun-logo-img {
+				height: 64px;
+			}
+			#csun-topbar a {
+				color: rgba(255,255,255,0.85);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			#csun-topbar a:hover { color: #fff; text-decoration: underline; }
+			#csun-topbar .topbar-links {
+				display: flex;
+				gap: 1.2rem;
+				flex-wrap: wrap;
+			}
+			#csun-topbar .topbar-social {
+				display: flex;
+				gap: 0.9rem;
+			}
+			#csun-topbar .topbar-social a { font-size: 1rem; }
+
 			/* ── Team cards grid ── */
 			.team-grid {
 				display: grid;
@@ -74,14 +113,18 @@
 			.team-card .member-links {
 				display: flex;
 				justify-content: center;
-				gap: 0.7rem;
+				gap: 0.9rem;
+				margin-top: 0.4rem;
 			}
 			.team-card .member-links a {
-				color: rgba(255,255,255,0.6);
-				font-size: 1rem;
-				transition: color 0.2s;
+				color: #333 !important;
+				font-size: 1.6rem;
+				transition: color 0.2s, transform 0.2s;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
 			}
-			.team-card .member-links a:hover { color: #fff; }
+			.team-card .member-links a:hover { color: #ff4d00 !important; transform: scale(1.15); }
 
 			/* ── Tech links grid ── */
 			.tech-links-grid {
@@ -241,6 +284,26 @@
 	</head>
 	<body>
 
+		<!-- CSUN TOP BAR -->
+		<div id="csun-topbar">
+			<div class="topbar-left">
+				<img class="csun-logo-img"
+				     src="https://upload.wikimedia.org/wikipedia/en/8/8c/CSUNS.svg"
+				     alt="CSUN Logo" />
+				<div class="topbar-links">
+					<a href="https://www.csun.edu/">CSUN Home</a>
+					<a href="https://www.csun.edu/engineering-computer-science/computer-science">CS Department</a>
+					<a href="https://www.csun.edu/~xjiang/SeniorDesign/">&#8592; Senior Design Course</a>
+				</div>
+			</div>
+			<div class="topbar-social">
+				<a href="https://www.facebook.com/calstatenorthridge" title="CSUN Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+				<a href="https://x.com/csunorthridge" title="CSUN Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+				<a href="https://www.linkedin.com/school/california-state-university-northridge/" title="CSUN LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+				<a href="https://www.instagram.com/csunorthridge/" title="CSUN Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+			</div>
+		</div>
+
 		<!-- Wrapper -->
 		<div id="wrapper">
 
@@ -254,9 +317,9 @@
 					</svg>
 				</span>
 				<h1>Geo-Information Data Visualization Project</h1>
-				<p>A wildfire prediction and risk visualization platform built at<br />
-				<a href="https://www.csun.edu/">California State University, Northridge</a> &mdash; combining
-				geospatial data, machine learning, and interactive mapping.</p>
+				<p>A free tool that shows you where wildfires are most likely to happen in California —<br />
+				<a href="https://www.csun.edu/">California State University, Northridge</a>  combining
+				built by CSUN students using real fire, weather, and land data.</p>
 			</header>
 
 			<!-- Nav -->
@@ -289,22 +352,19 @@
 								<h2>Project Overview</h2>
 							</header>
 							<p>
-								The Geo-Information Data Visualization Project is a full-stack wildfire risk
-								platform developed as a CSUN Computer Science Senior Design capstone. The system
-								ingests geospatial data &mdash; including weather, vegetation, elevation, and
-								historical fire records &mdash; and feeds it into a trained machine learning model
-								to generate real-time risk predictions displayed on an interactive map.
+								This project is a wildfire risk tool built by CSUN Computer Science students.
+								It pulls together real data like current weather, how dry the land is,
+								and where fires have burned before and uses that to show you where
+								wildfires are most likely to start across California.
 							</p>
 							<p>
-								The platform supports residents, researchers, and emergency planners who need to
-								understand where wildfire risk is highest across California. It provides a
-								React-based frontend with GIS layer controls and date filters, a Flask backend
-								with a live prediction API, user-defined threshold alerts, and an admin panel
-								for managing data refresh schedules.
+								Whether you live near fire-prone areas, work in emergency response, or just want
+								to stay informed this tool is for you. Browse a live map, check fire risk
+								for any spot in California, set personal alerts, and see active fires all in one place.
 							</p>
 							<ul class="actions">
 								<li>
-									<a href="https://github.com/IvanLopez-Source/geo-info-data-visualization-project"
+									<a href="https://github.com/CSUN-ARCS-GeoInfoVisualization/geo-info-data-visualization-project"
 									   class="button" target="_blank">
 										View on GitHub
 									</a>
@@ -325,58 +385,56 @@
 				     ════════════════════════════ -->
 				<section id="first" class="main special">
 					<header class="major">
-						<h2>Major Features</h2>
+						<h2>What Can It Do?</h2>
 					</header>
 					<ul class="features">
 						<li>
 							<span class="icon solid major style1 fa-map-marked-alt"></span>
-							<h3>Interactive Geospatial Maps</h3>
+							<h3>Live Fire Map</h3>
 							<p>
-								Dynamic GIS layers with date filters let users explore wildfire risk zones,
-								affected regions, and location-based environmental patterns across California
-								in real time.
+								An interactive map of California that shows you where fire risk is high right now.
+								You can filter by date and zoom into any area to see what's going on.
 							</p>
 						</li>
 						<li>
 							<span class="icon major style3 fa-brain"></span>
-							<h3>ML Risk Prediction</h3>
+							<h3>Fire Risk Score</h3>
 							<p>
-								A trained scikit-learn model provides single and batch wildfire risk predictions
-								via REST API, powered by ingested weather, vegetation, elevation, and fire-history
-								data.
+								Our system calculates a fire risk score for any location using weather conditions,
+								how dry the plants and soil are, the terrain, and past fire history. Think of it
+								like a weather forecast, but for wildfire danger.
 							</p>
 						</li>
 						<li>
 							<span class="icon major style5 fa-bell"></span>
 							<h3>Alerts &amp; Notifications</h3>
 							<p>
-								Users define custom risk thresholds and receive alerts when fire risk conditions
-								meet their configured levels, keeping residents and planners proactively informed.
+								Set your own alert level and get notified when fire risk in your area gets too high.
+								No more constantly checking  we'll let you know when it matters.
 							</p>
 						</li>
 						<li>
 							<span class="icon solid major style2 fa-database"></span>
-							<h3>Data Ingestion Pipeline</h3>
+							<h3>Always Up-to-Date Data</h3>
 							<p>
-								An automated ETL pipeline ingests and preprocesses geospatial data from weather
-								feeds, vegetation indices, elevation models, and historical fire records on a
-								configurable schedule.
+								The system automatically pulls in the latest weather reports, satellite data,
+								and fire records on a regular schedule so the information you see is always fresh.
 							</p>
 						</li>
 						<li>
 							<span class="icon solid major style4 fa-chart-bar"></span>
-							<h3>Data Visualization &amp; Analytics</h3>
+							<h3>Easy-to-Read Charts &amp; Visuals</h3>
 							<p>
-								Visual overlays, risk dashboards, and analytical displays make complex
-								environmental data accessible to both technical researchers and general users.
+								Complex fire and weather data is turned into simple charts and color-coded maps
+								so anyone can understand what's happening at a glance no science degree needed.
 							</p>
 						</li>
 						<li>
 							<span class="icon solid major style1 fa-cogs"></span>
-							<h3>Admin Workflows</h3>
+							<h3>Behind the Scenes Controls</h3>
 							<p>
-								Administrators configure data refresh schedules, manage user roles, and control
-								system settings through a dedicated admin panel backed by secure API routes.
+								Our team can manage the system behind the scenes  updating data sources,
+								managing user accounts, and keeping everything running smoothly.
 							</p>
 						</li>
 					</ul>
@@ -387,10 +445,9 @@
 				     ════════════════════════════ -->
 				<section id="second" class="main special">
 					<header class="major">
-						<h2>Technologies &amp; Skills</h2>
+						<h2>How We Built It</h2>
 						<p>
-							A modern full-stack + ML stack spanning frontend, backend, geospatial
-							visualization, data engineering, and DevOps.
+							Here's a look at the tools and programming languages our team used to build this project.
 						</p>
 					</header>
 
@@ -418,7 +475,7 @@
 					</ul>
 
 					<!-- Req #4: Technologies with hyperlinks -->
-					<h3 style="margin-bottom:0.8rem;">Technologies Used</h3>
+					<h3 style="margin-bottom:0.8rem;">Tools &amp; Technologies Used</h3>
 					<div class="tech-links-grid">
 						<a href="https://react.dev" target="_blank">
 							<i class="fab fa-react"></i> React
@@ -465,26 +522,26 @@
 					</div>
 
 					<!-- Req #5: Skills -->
-					<h3 style="margin: 2rem 0 0.8rem;">Skills Applied</h3>
+					<h3 style="margin: 2rem 0 0.8rem;">Skills Our Team Used</h3>
 					<div class="skills-tags">
-						<span class="tag">Full-Stack Development</span>
-						<span class="tag">Machine Learning</span>
-						<span class="tag">Geospatial Data Engineering</span>
-						<span class="tag">REST API Design</span>
-						<span class="tag">GIS &amp; Map Visualization</span>
-						<span class="tag">Data Ingestion &amp; ETL</span>
-						<span class="tag">Database Design</span>
-						<span class="tag">ML Model Training &amp; Inference</span>
+						<span class="tag">Building Websites &amp; Apps</span>
+						<span class="tag">Teaching Computers to Predict</span>
+						<span class="tag">Working with Map &amp; Location Data</span>
+						<span class="tag">Connecting App to Data Sources</span>
+						<span class="tag">Interactive Map Design</span>
+						<span class="tag">Collecting &amp; Cleaning Data</span>
+						<span class="tag">Organizing &amp; Storing Data</span>
+						<span class="tag">Training the Fire Risk Predictor</span>
 						<span class="tag">React + TypeScript</span>
 						<span class="tag">Python &amp; Flask</span>
-						<span class="tag">Docker &amp; Containerization</span>
-						<span class="tag">Software Requirements Engineering</span>
-						<span class="tag">Agile Collaboration</span>
-						<span class="tag">Unit &amp; Integration Testing</span>
-						<span class="tag">Authentication &amp; Authorization</span>
-						<span class="tag">Real-Time Notifications</span>
-						<span class="tag">Risk Modeling</span>
-						<span class="tag">Debugging &amp; Code Review</span>
+						<span class="tag">Packaging the App for Deployment</span>
+						<span class="tag">Planning &amp; Designing the System</span>
+						<span class="tag">Teamwork &amp; Sprint Planning</span>
+						<span class="tag">Testing &amp; Bug Fixing</span>
+						<span class="tag">User Login &amp; Security</span>
+						<span class="tag">Live Alerts &amp; Notifications</span>
+						<span class="tag">Calculating Fire Danger Scores</span>
+						<span class="tag">Finding &amp; Fixing Problems</span>
 					</div>
 				</section>
 
@@ -493,11 +550,11 @@
 				     ════════════════════════════ -->
 				<section id="screenshots-section" class="main special">
 					<header class="major">
-						<h2>Project Screenshots</h2>
+						<h2>See It In Action</h2>
 						<p>
-							Visual walkthrough of the platform's key interfaces.<br />
+							Here's what the app actually looks like when you use it.<br />
 							<small style="opacity:0.5;">
-								To add real screenshots: save images to images/ and update the src attributes below.
+								
 							</small>
 						</p>
 					</header>
@@ -543,8 +600,8 @@
 				     ════════════════════════════ -->
 				<section id="demo-section" class="main special">
 					<header class="major">
-						<h2>Project Demo Video</h2>
-						<p>A 3&ndash;5 minute walkthrough of the platform's core features.</p>
+						<h2>Watch the Demo</h2>
+						<p>See the full app in action in this short 3&ndash;5 minute video walkthrough.</p>
 					</header>
 
 					<!--
@@ -579,53 +636,48 @@
 				     ════════════════════════════ -->
 				<section id="cta" class="main special">
 					<header class="major">
-						<h2>Project Team</h2>
+						<h2>Meet the Team</h2>
 						<p>
-							Five CS students from CSUN combining full-stack development, machine learning,
-							geospatial engineering, and data management.
+							We're five Computer Science students from CSUN who built this together from scratch.
 						</p>
 					</header>
 
-					<!--
-					HOW TO ADD TEAM PHOTOS:
-					- Save each photo to images/, e.g. images/ivan-lopez.jpg
-					- Replace the .team-avatar-placeholder div with:
-					  <img class="team-photo" src="images/ivan-lopez.jpg" alt="Ivan Lopez" />
-					- Replace the # hrefs with real GitHub and LinkedIn URLs
-					-->
+					
 					<div class="team-grid">
 
 						<div class="team-card">
-							<div class="team-avatar-placeholder av-red">IL</div>
+							<img class="team-photo" src="images/Ivan.jpeg" alt="Ivan Lopez"
+							     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+							<div class="team-avatar-placeholder av-red" style="display:none">IL</div>
 							<h4>Ivan Lopez</h4>
 							<div class="role">Frontend Development &amp; Data Visualization</div>
 							<div class="member-links">
-								<a href="https://github.com/IvanLopez-Source" title="GitHub" target="_blank">
-									<i class="fab fa-github"></i>
-								</a>
-								<a href="#" title="LinkedIn — add your URL" target="_blank">
-									<i class="fab fa-linkedin"></i>
-								</a>
+								<a href="https://github.com/ivanlopez8" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
 						</div>
 
 						<div class="team-card">
-							<div class="team-avatar-placeholder av-blue">IC</div>
+							<img class="team-photo" src="images/Ido.png" alt="Ido Cohen"
+							     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+							<div class="team-avatar-placeholder av-blue" style="display:none">IC</div>
 							<h4>Ido Cohen</h4>
 							<div class="role">Database Design &amp; Data Management</div>
 							<div class="member-links">
-								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
-								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+								<a href="https://github.com/IdoCohen560" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
 						</div>
 
 						<div class="team-card">
-							<div class="team-avatar-placeholder av-green">SJ</div>
+							<img class="team-photo" src="images/Sannia.jpg" alt="Sannia Jean"
+							     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+							<div class="team-avatar-placeholder av-green" style="display:none">SJ</div>
 							<h4>Sannia Jean</h4>
 							<div class="role">Machine Learning &amp; Data Analysis</div>
 							<div class="member-links">
-								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
-								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+								<a href="https://github.com/Sanniaj" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
 						</div>
 
@@ -634,8 +686,8 @@
 							<h4>Alex Hernandez-Abrego</h4>
 							<div class="role">Authentication &amp; UI Support</div>
 							<div class="member-links">
-								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
-								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+								<a href="https://github.com/ahabrego03" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
 						</div>
 
@@ -644,8 +696,8 @@
 							<h4>Tony Song</h4>
 							<div class="role">Backend Development &amp; Integration</div>
 							<div class="member-links">
-								<a href="#" title="GitHub — add URL" target="_blank"><i class="fab fa-github"></i></a>
-								<a href="#" title="LinkedIn — add URL" target="_blank"><i class="fab fa-linkedin"></i></a>
+								<a href="https://github.com/tonysong1" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
 						</div>
 
@@ -658,7 +710,7 @@
 								   class="button primary">&#8592; Back to Course Page</a>
 							</li>
 							<li>
-								<a href="https://github.com/IvanLopez-Source/geo-info-data-visualization-project"
+								<a href="https://github.com/CSUN-ARCS-GeoInfoVisualization/geo-info-data-visualization-project"
 								   class="button" target="_blank">GitHub Repository</a>
 							</li>
 						</ul>
