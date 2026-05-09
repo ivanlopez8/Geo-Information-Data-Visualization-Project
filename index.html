@@ -560,36 +560,28 @@
 					</header>
 					<div class="screenshots-grid">
 
-						<!-- Screenshot 1 — save as images/screenshot-map.png -->
+						<!-- GIF 1 — Historical Fire Perimeters -->
 						<div class="screenshot-item">
-							<img src="images/screenshot-map.png"
-							     alt="Risk Map Visualization"
-							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-map\'></i>Risk Map Visualization<br><small>Save as images/screenshot-map.png</small></div>'" />
-							<div class="screenshot-caption">Risk Map Visualization</div>
+							<img src="images/HISTORY.gif" alt="Historical Fire Perimeters Map" />
+							<div class="screenshot-caption"><strong>Historical Fire Perimeters</strong><br>Browse decades of California wildfire boundaries, filter by year, and see fire size color-coded on a satellite map.</div>
 						</div>
 
-						<!-- Screenshot 2 — save as images/screenshot-prediction.png -->
+						<!-- GIF 2 — FEMA Evacuation Shelters -->
 						<div class="screenshot-item">
-							<img src="images/screenshot-prediction.png"
-							     alt="ML Prediction Dashboard"
-							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-chart-bar\'></i>ML Prediction Dashboard<br><small>Save as images/screenshot-prediction.png</small></div>'" />
-							<div class="screenshot-caption">ML Prediction Dashboard</div>
+							<img src="images/FEMAShelters.gif" alt="Interactive Evacuation Zone Map" />
+							<div class="screenshot-caption"><strong>Evacuation Shelter Map</strong><br>Find the nearest FEMA-registered shelter with clustering, click-to-detail, and a small dots mode for statewide density view.</div>
 						</div>
 
-						<!-- Screenshot 3 — save as images/screenshot-alerts.png -->
+						<!-- GIF 3 — NASA FIRMS Active Fires -->
 						<div class="screenshot-item">
-							<img src="images/screenshot-alerts.png"
-							     alt="Alerts Panel"
-							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-bell\'></i>Alerts &amp; Notifications<br><small>Save as images/screenshot-alerts.png</small></div>'" />
-							<div class="screenshot-caption">Alerts &amp; Notifications</div>
+							<img src="images/FIRMSfires.gif" alt="Active Fires NASA FIRMS" />
+							<div class="screenshot-caption"><strong>Active Fires &mdash; NASA FIRMS</strong><br>Real-time fire detections from NASA's VIIRS satellite, color-coded by confidence level and sized by fire intensity.</div>
 						</div>
 
-						<!-- Screenshot 4 — save as images/screenshot-admin.png -->
+						<!-- GIF 4 — Structure Damage DINS -->
 						<div class="screenshot-item">
-							<img src="images/screenshot-admin.png"
-							     alt="Admin Panel"
-							     onerror="this.outerHTML='<div class=\'screenshot-placeholder\'><i class=\'fas fa-cogs\'></i>Admin Panel<br><small>Save as images/screenshot-admin.png</small></div>'" />
-							<div class="screenshot-caption">Admin Workflow</div>
+							<img src="images/DAMAGE.gif" alt="Structure Damage DINS Layer" />
+							<div class="screenshot-caption"><strong>Structure Damage Layer</strong><br>CAL FIRE post-fire inspection data showing every assessed structure, color-coded from destroyed to no damage.</div>
 						</div>
 
 					</div>
@@ -613,27 +605,84 @@
 					4. Uncomment the .video-container block and paste your ID where shown
 					-->
 
-					<!--
 					<div class="video-container">
 						<iframe
-							src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+							src="https://www.youtube.com/embed/hP-aycZPVuo"
 							title="Geo-Information Data Visualization Project Demo"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowfullscreen>
 						</iframe>
-					</div>
-					-->
-
-					<div class="video-placeholder">
-						<i class="fab fa-youtube"></i>
-						<strong>Embed your YouTube demo video here</strong>
-						<small>See the HTML comment above for step-by-step instructions</small>
 					</div>
 				</section>
 
 				<!-- ════════════════════════════
 				     TEAM  (Req #2)
 				     ════════════════════════════ -->
+				<!-- ════════════════════════════
+				     ARCHITECTURE
+				     ════════════════════════════ -->
+				<section id="architecture-section" class="main special">
+					<header class="major">
+						<h2>System Architecture</h2>
+						<p>How the platform is structured and how data flows through the system.</p>
+					</header>
+					<div class="architecture-grid">
+						<div class="arch-layer arch-frontend">
+							<div class="arch-label">Frontend</div>
+							<div class="arch-tech">React + TypeScript + Vite</div>
+							<div class="arch-items">
+								<span>Dashboard</span>
+								<span>Fire Map</span>
+								<span>Evacuation Map</span>
+								<span>History Map</span>
+								<span>Alerts</span>
+								<span>Admin Panel</span>
+							</div>
+						</div>
+						<div class="arch-arrow">&#8595;</div>
+						<div class="arch-layer arch-backend">
+							<div class="arch-label">Backend</div>
+							<div class="arch-tech">Flask + Python (Render)</div>
+							<div class="arch-items">
+								<span>Auth API</span>
+								<span>Risk Prediction API</span>
+								<span>Notifications API</span>
+								<span>User Data API</span>
+							</div>
+						</div>
+						<div class="arch-arrow">&#8595;</div>
+						<div class="arch-row">
+							<div class="arch-layer arch-ml">
+								<div class="arch-label">ML Model</div>
+								<div class="arch-tech">scikit-learn</div>
+								<div class="arch-items">
+									<span>Fire Risk Score</span>
+									<span>Weather + Terrain</span>
+								</div>
+							</div>
+							<div class="arch-layer arch-db">
+								<div class="arch-label">Database</div>
+								<div class="arch-tech">PostgreSQL (Render)</div>
+								<div class="arch-items">
+									<span>Users</span>
+									<span>Saved Locations</span>
+									<span>Alerts</span>
+								</div>
+							</div>
+							<div class="arch-layer arch-external">
+								<div class="arch-label">External APIs</div>
+								<div class="arch-tech">Free &amp; Open Data</div>
+								<div class="arch-items">
+									<span>NASA FIRMS</span>
+									<span>Open-Meteo</span>
+									<span>CAL FIRE GIS</span>
+									<span>FEMA Shelters</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				<section id="cta" class="main special">
 					<header class="major">
 						<h2>Meet the Team</h2>
@@ -655,6 +704,7 @@
 								<a href="https://github.com/ivanlopez8" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
 								<a href="https://www.linkedin.com/in/-lopez-ivan/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
+							<p class="member-bio">Ivan led all frontend map development, building the interactive fire perimeter history, CAL FIRE structure damage, FEMA evacuation shelter, and NASA FIRMS active fire layers. He optimized rendering performance across all map components and integrated real geospatial datasets into the live platform.</p>
 						</div>
 
 						<div class="team-card">
@@ -667,6 +717,7 @@
 								<a href="https://github.com/IdoCohen560" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
 								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
+							<p class="member-bio">Ido designed and managed the project database, handling data modeling, schema design, and data pipelines that power the platform&#39;s backend. He ensured data integrity and efficient storage for user accounts, saved locations, and application state.</p>
 						</div>
 
 						<div class="team-card">
@@ -679,6 +730,7 @@
 								<a href="https://github.com/Sanniaj" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
 								<a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
+							<p class="member-bio">Sannia built the machine learning model that calculates wildfire risk scores for any location in California. She sourced, cleaned, and processed fire, weather, and terrain datasets, and trained the prediction model that powers the risk assessment feature.</p>
 						</div>
 
 						<div class="team-card">
@@ -690,6 +742,7 @@
 								<a href="https://github.com/ahabrego03" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
 								<a href="https://www.linkedin.com/in/alex-hernandez-abrego/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
+							<p class="member-bio">Alex implemented the user authentication system including login, registration, and session management. He also contributed to UI components and frontend integration, helping connect the interface to backend services.</p>
 						</div>
 
 						<div class="team-card">
@@ -701,6 +754,7 @@
 								<a href="https://github.com/tonysong1" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
 								<a href="https://www.linkedin.com/in/tony-song-4198aa2b6/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 							</div>
+							<p class="member-bio">Tony built the backend API and notification infrastructure using Flask and Python. He developed the endpoints for user data, alert preferences, and system notifications, and integrated the backend with the machine learning prediction pipeline.</p>
 						</div>
 
 					</div>
@@ -710,6 +764,10 @@
 							<li>
 								<a href="https://www.csun.edu/~xjiang/SeniorDesign/"
 								   class="button primary">&#8592; Back to Course Page</a>
+							</li>
+							<li>
+								<a href="https://firescope.netlify.app/"
+								   class="button primary" target="_blank">&#127757; View Live Site</a>
 							</li>
 							<li>
 								<a href="https://github.com/CSUN-ARCS-GeoInfoVisualization/geo-info-data-visualization-project"

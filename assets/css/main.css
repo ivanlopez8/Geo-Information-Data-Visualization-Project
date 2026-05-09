@@ -3783,3 +3783,134 @@ input, select, textarea {
 			}
 
 		}
+
+/* =====================================================
+   Screenshots / GIF Gallery Section
+   ===================================================== */
+
+figure {
+	margin: 0;
+}
+
+figcaption {
+	font-size: 0.82em;
+	color: #aaa;
+	margin-top: 0.6em;
+	text-align: center;
+	line-height: 1.5;
+	padding: 0 0.5em;
+}
+
+figcaption strong {
+	color: #ccc;
+	display: block;
+	margin-bottom: 0.2em;
+}
+
+#screenshots-section .box.alt {
+	margin-top: 2em;
+}
+
+#screenshots-section .image.fit img {
+	border-radius: 6px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+#screenshots-section .row.gtr-uniform {
+	row-gap: 2.5em;
+}
+
+
+/* =====================================================
+   Team Member Bios
+   ===================================================== */
+
+.member-bio {
+	font-size: 0.82em;
+	color: #999;
+	line-height: 1.6;
+	margin-top: 0.75em;
+	padding: 0 0.5em;
+	text-align: left;
+}
+
+/* =====================================================
+   Architecture Diagram
+   ===================================================== */
+
+.architecture-grid {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0;
+	margin: 2em auto;
+	max-width: 720px;
+}
+
+.arch-layer {
+	width: 100%;
+	border-radius: 8px;
+	padding: 1.2em 1.5em;
+	text-align: center;
+	margin-bottom: 0;
+}
+
+.arch-label {
+	font-size: 0.7em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	margin-bottom: 0.2em;
+	opacity: 0.7;
+}
+
+.arch-tech {
+	font-size: 0.95em;
+	font-weight: 600;
+	margin-bottom: 0.6em;
+}
+
+.arch-items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.4em;
+}
+
+.arch-items span {
+	background: rgba(255,255,255,0.1);
+	border-radius: 4px;
+	padding: 0.2em 0.6em;
+	font-size: 0.78em;
+}
+
+.arch-frontend { background: rgba(13, 148, 136, 0.25); border: 1px solid rgba(13,148,136,0.5); }
+.arch-backend  { background: rgba(59, 130, 246, 0.2);  border: 1px solid rgba(59,130,246,0.4); }
+.arch-ml       { background: rgba(249, 115, 22, 0.2);  border: 1px solid rgba(249,115,22,0.4); }
+.arch-db       { background: rgba(139, 92, 246, 0.2);  border: 1px solid rgba(139,92,246,0.4); }
+.arch-external { background: rgba(34, 197, 94, 0.15);  border: 1px solid rgba(34,197,94,0.4);  }
+
+.arch-arrow {
+	font-size: 1.5em;
+	color: rgba(255,255,255,0.3);
+	margin: 0.3em 0;
+}
+
+.arch-row {
+	display: flex;
+	gap: 1em;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.arch-row .arch-layer {
+	flex: 1;
+	min-width: 180px;
+}
+
+@media screen and (max-width: 600px) {
+	.arch-row { flex-direction: column; }
+}
